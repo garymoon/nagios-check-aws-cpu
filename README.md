@@ -22,20 +22,20 @@ Usage
 
 Configuration
 -------------
-define command{
-  command_name  check_aws_cpu
-  command_line  $USER1$/check_aws_cpu.rb --stack '$ARG1$' --tags '$ARG2$' --key '$ARG3$' --secret '$ARG4$' --upper '$ARG5$' --lower '$ARG6$' --region '$ARG7$' --instances '$ARG8$' --timespan '$ARG9$' 
-  }
-
-define service{
-  use                             generic-service 
-  host_name                       aws
-  service_description             WWWFleet CPU
-  check_command                   check_aws_cpu!PROD!WWWFleet!<%= @aws_nagios_key %>!<%= @aws_nagios_secret %>!70!5!<%= @aws_region_code %>!!20!
-  check_interval                  5
-  notification_period             workhours
-  first_notification_delay        30
-}
+    define command{
+      command_name  check_aws_cpu
+      command_line  $USER1$/check_aws_cpu.rb --stack '$ARG1$' --tags '$ARG2$' --key '$ARG3$' --secret '$ARG4$' --upper '$ARG5$' --lower '$ARG6$' --region '$ARG7$' --instances '$ARG8$' --timespan '$ARG9$' 
+      }
+    
+    define service{
+      use                             generic-service
+      host_name                       aws
+      service_description             WWWFleet CPU
+      check_command                   check_aws_cpu!PROD!WWWFleet!<%= @aws_nagios_key %>!<%= @aws_nagios_secret %>!70!5!<%= @aws_region_code %>!!20!
+      check_interval                  5
+      notification_period             workhours
+      first_notification_delay        30
+    }
 
 
 Notes:
